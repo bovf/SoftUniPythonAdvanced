@@ -2,32 +2,55 @@ from collections import deque
 
 parentheses = list(input())
 parentheses = deque(parentheses)
-open_parentheses_40 = 0
-open_parentheses_91 = 0
 open_parentheses_123 = 0
-closed_parentheses_41 = 0
+open_parentheses = deque([])
 
 while parentheses:
-    left = ord(parentheses.popleft())
-    if left == 40:
-        if right == 41:
+    left = parentheses.popleft()
+    if left == "[":
+        open_parentheses.append("[")
+    elif left == "{":
+        open_parentheses.append("{")
+    elif left == "(":
+        open_parentheses.append("(")
+    elif left == ")":
+        if open_parentheses:
             pass
         else:
+            open_parentheses_123 -= 1
             break
-    elif left == 91:
-        if right == 93:
+        if open_parentheses.pop() == "(":
             pass
         else:
+            open_parentheses_123 -= 1
             break
-    elif left == 123:
-        if right == 125:
-            pass
-        else:
-            break
-    else:
-        break
 
-if len(parentheses) == 0:
+    elif left == "]":
+        if open_parentheses:
+            pass
+        else:
+            open_parentheses_123 -= 1
+            break
+        if open_parentheses.pop() == "[":
+            pass
+        else:
+            open_parentheses_123 -= 1
+            break
+
+    elif left == "}":
+        if open_parentheses:
+            pass
+        else:
+            open_parentheses_123 -= 1
+            break
+        if open_parentheses.pop() == "{":
+            pass
+        else:
+            open_parentheses_123 -= 1
+            break
+
+
+if len(parentheses) == 0 and open_parentheses_123 == 0:
     print("YES")
 else:
     print("NO")
