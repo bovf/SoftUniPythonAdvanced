@@ -6,19 +6,20 @@ length_of_second_set = lengths[1]
 first_set = set()
 second_set = set()
 
-for _ in range(length_of_first_set + length_of_second_set):
+for _ in range(length_of_first_set):
     number = int(input())
-    if len(first_set) < length_of_first_set:
-        first_set.add(number)
-    else:
-        second_set.add(number)
+    first_set.add(number)
+
+for _ in range(length_of_second_set):
+    number = int(input())
+    second_set.add(number)
 
 
-def smaller_set(set_one, set_two):
-    if len(set_one) <= len(set_two):
-        return set_one, set_two
-    else:
-        return set_two, set_one
+# def smaller_set(set_one, set_two):
+#     if len(set_one) <= len(set_two):
+#         return set_one, set_two
+#     else:
+#         return set_two, set_one
 
 
 repeating_elements = []
