@@ -1,18 +1,21 @@
 number_of_intersections = int(input())
-intersection_list = {}
+max_so_far = None
 
 for _ in range(number_of_intersections):
-    intersection = input().split("-")
-    first_cross_section = [int(x) for x in intersection[0].split(",")]
-    second_cross_section = [int(x) for x in intersection[1].split(",")]
-    intersection_start = max(first_cross_section[0], second_cross_section[0])
-    intersection_end = min(first_cross_section[1], second_cross_section[1])
+    first_line, second_line = input().split("-")
 
-    numbers_in_intersection = []
-    while intersection_start <= intersection_end:
-        numbers_in_intersection.append(intersection_start)
-        intersection_start += 1
+    first_line = first_line.split(",")
+    second_line = second_line.split(",")
 
-    intersection_list[numbers_in_intersection] = len(numbers_in_intersection)
+    first_line = (int(first_line[0]), int(first_line[1]))
+    second_line = (int(second_line[0]), int(second_line[1]))
 
-print(intersection_list)
+    near_point = max(first_line[0], second_line[0])
+    far_point = min(first_line[1], second_line[1])
+
+    span = far_point - near_point + 1
+
+    if max_so_far is None or span > len(max_so_far):
+        max_so_far = list(range(near_point, far_point + 1))
+
+print(f"Longest intersection is {max_so_far} with length {len(max_so_far)}")
