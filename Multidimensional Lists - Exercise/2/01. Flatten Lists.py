@@ -7,5 +7,9 @@ for lists in first_list:
     matrix.append(new)
 matrix.reverse()
 
+new_list = []
 for matrix_list in matrix:
-    print(" ".join(matrix_list), end=" ")
+    for list_element in matrix_list:
+        new_list.append(list_element)
+
+print(" ".join(new_list))
